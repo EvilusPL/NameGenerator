@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace NameGenerator
 {
@@ -8,13 +9,15 @@ namespace NameGenerator
         static void Main(string[] args)
         {
             NameOperations nameOperations;
-
-            nameOperations = new NameOperations("names.txt", "surnames.txt");
             
             try
             {
+                nameOperations = new NameOperations("names.txt", "surnames.txt");
                 Console.WriteLine(nameOperations.GetRandomName());
             } catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            } catch (FileNotFoundException e)
             {
                 Console.WriteLine(e.Message);
             }
